@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Header from "./components/Header";
+import AboutUs from "./components/About";
+import ProjectsGrid from "./components/Projects";
+import Footer from "./components/Footer";
+import Modal from "./components/Modal";
+import "./App.css"; // Import your app's styles
 
-function App() {
+const App = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <AboutUs />
+      <ProjectsGrid />
+      <button
+        style={{ marginTop: "1rem" }}
+        onClick={handleOpenModal}
+        className="reserve-button"
+      >
+        Reserve
+      </button>
+      <Modal show={showModal} handleClose={handleCloseModal} />
+      <Footer />
     </div>
   );
-}
+};
 
 export default App;
